@@ -9,14 +9,13 @@ from sqlalchemy.orm import Session
 from app.analysis.pipeline import run_analysis_pipeline
 from app.config import get_settings
 from app.db.models import AnalysisResult, ImageRecord, ProcessingStatus, SessionLocal
-from app.services.queue import celery_app
 
 logger = logging.getLogger(__name__)
 settings = get_settings()
 
 
-@celery_app.task(name="app.workers.tasks.process_image", bind=True)
-def process_image(self, image_id: str) -> dict:
+
+def process_image(image_id: str) -> dict:
     db: Session = SessionLocal()
     try:
         record = db.query(ImageRecord).filter(ImageRecord.id == UUID(image_id)).one_or_none()
