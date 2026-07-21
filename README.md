@@ -499,6 +499,6 @@ Handshake/
 Submitted as part of a take-home engineering assignment.
 
 ## Author
-M Skanda Shyam Bhat
-skandashyam102@gmail.com
-https://www.linkedin.com/in/mskandashyambhat/
+#### M Skanda Shyam Bhat
+#### skandashyam102@gmail.com
+#### https://www.linkedin.com/in/mskandashyambhat/
