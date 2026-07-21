@@ -5,7 +5,7 @@ from fastapi import APIRouter, Depends, File, HTTPException, UploadFile, status
 from sqlalchemy.orm import Session
 
 from app.config import get_settings
-from app.db.models import ImageRecord, ProcessingStatus, get_db, init_db
+from app.db.models import ImageRecord, ProcessingStatus, get_db
 from app.models.schemas import (
     AnalysisResponse,
     AnalysisSummary,
@@ -25,7 +25,7 @@ settings = get_settings()
 @router.post(
     "/upload",
     response_model=UploadResponse,
-    status_code=status.HTTP_202_ACCEPTED,
+    status_code=status.HTTP_200_OK,
     responses={400: {"model": ErrorResponse}, 413: {"model": ErrorResponse}},
 )
 async def upload_image(
@@ -53,16 +53,15 @@ async def upload_image(
     db.refresh(record)
 
     process_image(str(record.id))
-
-    logger.info("Enqueued processing for %s", record.id)
     db.refresh(record)
+    
+    logger.info("Processed image %s", record.id)
 
     return UploadResponse(
-    processing_id=record.id,
-    status=record.status.value,
-    message="Image processed successfully.",
-    )
-
+        processing_id=record.id,
+        status=record.status.value,
+        message="Image processed successfully.",
+)
 
 @router.get(
     "/status/{processing_id}",
