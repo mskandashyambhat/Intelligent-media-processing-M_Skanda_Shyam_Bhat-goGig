@@ -4,11 +4,7 @@ A backend system that accepts vehicle field photos, processes them asynchronousl
 
 Built for the Backend + AI Engineering take-home assignment.
 
-### Hosted on: <a href="https://intelligent-media-processing-mskandashyambhat-production.up.railway.app/docs"
-   target="_blank"
-   rel="noopener noreferrer">
-    Intelligent Media Processing
-</a>
+### Hosted on: <a href="https://intelligent-media-processing-mskandashyambhat-production.up.railway.app/docs" target="_blank" rel="noopener noreferrer">Intelligent Media Processing </a>
 ---
 
 ## Table of Contents
