@@ -52,13 +52,15 @@ async def upload_image(
     db.commit()
     db.refresh(record)
 
-    process_image.delay(str(record.id))
+    process_image(str(record.id))
 
     logger.info("Enqueued processing for %s", record.id)
+    db.refresh(record)
+
     return UploadResponse(
-        processing_id=record.id,
-        status="pending",
-        message="Image uploaded successfully. Processing has been queued.",
+    processing_id=record.id,
+    status=record.status.value,
+    message="Image processed successfully.",
     )
 
 
